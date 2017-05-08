@@ -1,0 +1,12 @@
+version: '3'
+services:
+    certbot:
+        build: .
+        container_name: nginx
+        ports:
+            - 80:80
+            - 443:443
+        network_mode: "bridge"
+        volumes:
+            - $PWD/etc:/etc/letsencrypt/
+            - $PWD/www:/var/www
