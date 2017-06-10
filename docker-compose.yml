@@ -1,12 +1,16 @@
 version: '3'
 services:
     certbot:
-        build: .
+        # build: .
+        image: wyhitomi/certbot
         container_name: nginx
         ports:
             - 80:80
             - 443:443
         network_mode: "bridge"
         volumes:
-            - $PWD/etc:/etc/letsencrypt/
-            - $PWD/www:/var/www
+            - $PWD/etc/letsencrypt:/etc/letsencrypt/
+            - $PWD/sites:/etc/nginx/sites-available/
+            - $PWD/www:/var/www/
+            - $PWD/logs/nginx:/var/logs/nginx/
+            - $PWD/logs/letsencrypt:/var/log/letsencrypt/
